@@ -1,46 +1,271 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#111">
-<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ace Physique Prep</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:#0b0b0d;color:#f5f5f5}
-header{padding:24px 18px 12px;position:sticky;top:0;background:#0b0b0df2;backdrop-filter:blur(12px);z-index:2}
-h1{margin:0;font-size:28px}.sub{color:#aaa;margin-top:4px}.tabs{display:flex;gap:8px;padding:12px 14px;position:sticky;top:83px;background:#0b0b0df2;z-index:2;overflow:auto}.tabs button{border:1px solid #333;background:#17171a;color:#ddd;border-radius:12px;padding:10px 14px;white-space:nowrap}.tabs button.active{background:#fff;color:#000}
-main{padding:8px 14px 40px;max-width:700px;margin:auto}.card{background:#151518;border:1px solid #29292d;border-radius:18px;padding:16px;margin:12px 0}.card h2,.card h3{margin:0 0 8px}.muted{color:#aaa}.exercise{padding:11px 0;border-bottom:1px solid #29292d;display:flex;justify-content:space-between;gap:12px}.exercise:last-child{border:0}.check{width:22px;height:22px;accent-color:#fff}.pill{display:inline-block;background:#242428;border-radius:999px;padding:5px 9px;font-size:12px;color:#ccc;margin:3px}
-.day{cursor:pointer}.day.done{border-color:#777}.day.done h3:after{content:" ✓";color:#8f8}
-textarea,input{width:100%;background:#101013;color:#fff;border:1px solid #333;border-radius:10px;padding:10px;margin-top:6px}button.primary{background:#fff;color:#000;border:0;border-radius:12px;padding:11px 14px;font-weight:700}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0b0b0b;
+  color: white;
+}
+
+header {
+  padding: 28px 20px;
+  text-align: center;
+  background: #111;
+  border-bottom: 1px solid #292929;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: 1px;
+}
+
+header p {
+  color: #999;
+  margin: 8px 0 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  background: #151515;
+  border: 1px solid #292929;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.stat {
+  background: #0e0e0e;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-size: 24px;
+}
+
+.stat span {
+  color: #888;
+  font-size: 13px;
+}
+
+.progress {
+  height: 12px;
+  background: #292929;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.progress-bar {
+  width: 35%;
+  height: 100%;
+  background: white;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid #252525;
+}
+
+.task:last-child {
+  border-bottom: none;
+}
+
+.task input {
+  width: 20px;
+  height: 20px;
+}
+
+.task label {
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: white;
+  color: black;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: .85;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #666;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  header h1 {
+    font-size: 26px;
+  }
+}
 </style>
 </head>
+
 <body>
-<header><h1>ACE PHYSIQUE PREP</h1><div class="sub">Home training • Dec 16, 2026</div></header>
-<nav class="tabs">
-<button class="active" onclick="show('workouts',this)">Workouts</button>
-<button onclick="show('food',this)">Food</button>
-<button onclick="show('checkin',this)">Check-in</button>
-</nav>
-<main id="app"></main>
-<script>
-const workouts={
-"MON — Chest + Shoulders + Triceps":[["Push-ups","4 × 8–15"],["Feet-elevated push-ups","3 × 8–15"],["Pike push-ups","3 × 6–12"],["Chair/bench dips","3 × 8–15"],["Lateral raises — backpack/water jugs","4 × 12–20"],["Overhead triceps extensions — backpack","3 × 12–20"]],
-"TUE — Back + Biceps":[["Backpack rows","4 × 10–15"],["One-arm backpack rows","3 × 10–15 / side"],["Pull-ups or chin-ups — safe setup only","4 sets"],["Backpack curls","3 × 10–15"],["Hammer curls","3 × 10–15"],["Rear-delt flyes — bottles/jugs","3 × 15–20"]],
-"WED — Recovery":[["Easy walking","20–40 min"],["Mobility","5–10 min"]],
-"THU — Shoulders + Chest + Arms":[["Pike push-ups","4 × 6–12"],["Push-ups","4 × 10–20"],["Backpack shoulder press","3 × 8–15"],["Lateral raises","5 × 12–20"],["Backpack curls","3 × 10–15"],["Triceps extensions","3 × 12–20"]],
-"FRI — Back + Legs + Core":[["Backpack rows","4 × 10–15"],["Pull-ups/chin-ups — safe setup only","4 sets"],["Bulgarian split squats","3 × 8–12 / leg"],["Backpack Romanian deadlifts","3 × 10–15"],["Calf raises","4 × 15–25"],["Knee raises","3 × 10–15"],["Plank","3 × 30–60 sec"]],
-"SAT/SUN — Rest":[["Optional easy walking","20–40 min"]]
-};
-const food=["Eggs","Milk","Greek yogurt","Chicken thighs","Canned tuna/chicken","Ground beef/turkey when affordable","Rice","Oats","Potatoes","Pasta","Beans","Peanut butter","Bananas/apples","Frozen vegetables","Bread/tortillas"];
-function key(s){return "ace_"+s.replace(/[^a-z0-9]/gi,"_")}
-function renderWorkouts(){let out='<div class="card"><h2>Weekly split</h2><p class="muted">Progress by adding reps or backpack weight when the top of the range becomes easy. Stop if you feel faint, have chest pain, or have unusual symptoms.</p></div>';
-for(const [day,exs] of Object.entries(workouts)){let k=key(day);out+=`<div class="card day ${localStorage[k]?'done':''}" onclick="toggle('${k}',this)"><h3>${day}</h3>`+exs.map(e=>`<div class="exercise"><span>${e[0]}</span><b>${e[1]}</b></div>`).join('')+`</div>`}return out}
-function renderFood(){return `<div class="card"><h2>Simple food base</h2><p class="muted">Use the foods you actually have access to. Have your healthcare professional set your calorie/protein target rather than using an aggressive cut.</p>${food.map(x=>`<span class="pill">${x}</span>`).join('')}</div><div class="card"><h3>Easy meal combos</h3><p>Eggs + toast + fruit</p><p>Oats + milk + peanut butter + banana</p><p>Chicken + rice + frozen vegetables</p><p>Ground meat + potatoes + vegetables</p><p>Greek yogurt + oats/fruit</p><p>Beans + rice + eggs</p></div>`}
-function renderCheck(){return `<div class="card"><h2>Weekly check-in</h2><label>Weight<input id="wt" placeholder="lb" value="${localStorage.wt||''}"></label><label>Notes<textarea id="notes" rows="5" placeholder="Energy, training, posing, appetite...">${localStorage.notes||''}</textarea></label><br><button class="primary" onclick="save()">Save check-in</button></div><div class="card"><h3>Prep priorities</h3><p>Training consistency • progressive overload • posing practice • sleep • clinician-guided nutrition</p></div>`}
-function show(x,b){document.querySelectorAll('.tabs button').forEach(a=>a.classList.remove('active'));b.classList.add('active');app.innerHTML=x==='workouts'?renderWorkouts():x==='food'?renderFood():renderCheck()}
-function toggle(k,el){localStorage[k]=localStorage[k]?'':'1';el.classList.toggle('done')}
-function save(){localStorage.wt=document.getElementById('wt').value;localStorage.notes=document.getElementById('notes').value;alert('Check-in saved 🤝')}
-show('workouts',document.querySelector('.tabs button'));
-</script>
-</body></html>
+
+<header>
+  <h1>ACE PHYSIQUE PREP</h1>
+  <p>Build the physique. Build the discipline.</p>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Current Goal</h2>
+    <p>Lean, athletic, defined physique.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <strong>155</strong>
+        <span>Current Weight</span>
+      </div>
+
+      <div class="stat">
+        <strong>6'0"</strong>
+        <span>Height</span>
+      </div>
+
+      <div class="stat">
+        <strong>Dec 16</strong>
+        <span>Target Date</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Overall Progress</h2>
+    <p>Stay consistent. Results stack up.</p>
+
+    <div class="progress">
+      <div class="progress-bar"></div>
+    </div>
+
+    <p>35% complete</p>
+  </div>
+
+  <div class="card">
+    <h2>Today's Checklist</h2>
+
+    <div class="task">
+      <input type="checkbox" id="water">
+      <label for="water">Drink enough water</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" id="protein">
+      <label for="protein">Hit protein goal</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" id="workout">
+      <label for="workout">Complete today's workout</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" id="steps">
+      <label for="steps">Get daily movement / steps</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" id="sleep">
+      <label for="sleep">Get 8+ hours of sleep</label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Workout</h2>
+
+    <p><strong>Push</strong> — Chest, shoulders, triceps</p>
+    <p><strong>Pull</strong> — Back, biceps</p>
+    <p><strong>Legs</strong> — Quads, hamstrings, glutes</p>
+    <p><strong>Core</strong> — Abs and stability</p>
+
+    <button onclick="alert('Workout section coming next 🔥')">
+      VIEW TODAY'S WORKOUT
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>Nutrition</h2>
+
+    <p>Focus on:</p>
+
+    <ul>
+      <li>High-protein meals</li>
+      <li>Enough calories to support training</li>
+      <li>Fruits and vegetables</li>
+      <li>Plenty of water</li>
+      <li>Consistent meals</li>
+    </ul>
+
+    <button onclick="alert('Nutrition tracker coming next 🔥')">
+      OPEN NUTRITION
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>Mindset</h2>
+
+    <p>
+      You don't need a perfect day.
+      You need another consistent day.
+    </p>
+
+    <button onclick="alert('Stay locked in. 🤝')">
+      LOCK IN
+    </button>
+  </div>
+
+</div>
+
+<footer>
+  ACE PHYSIQUE PREP © 2026
+</footer>
+
+</body>
+</html>
