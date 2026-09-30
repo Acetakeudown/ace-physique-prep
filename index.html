@@ -266,6 +266,21 @@ footer {
 <footer>
   ACE PHYSIQUE PREP © 2026
 </footer>
+  <script>
+const tasks = document.querySelectorAll('.task input');
+
+tasks.forEach((task, index) => {
+  const saved = localStorage.getItem('ace-task-' + index);
+
+  if (saved === 'true') {
+    task.checked = true;
+  }
+
+  task.addEventListener('change', () => {
+    localStorage.setItem('ace-task-' + index, task.checked);
+  });
+});
+</script>
 
 </body>
 </html>
