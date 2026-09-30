@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#0b0b0b">
 <title>Ace Physique Prep</title>
 
 <style>
@@ -12,135 +13,312 @@
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #0b0b0b;
-  color: white;
+  background: #090909;
+  color: #f5f5f5;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Arial, sans-serif;
 }
 
 header {
-  padding: 28px 20px;
-  text-align: center;
-  background: #111;
+  padding: 28px 18px 20px;
+  background: #101010;
   border-bottom: 1px solid #292929;
 }
 
-header h1 {
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
   margin: 0;
-  font-size: 32px;
+  font-size: 27px;
   letter-spacing: 1px;
 }
 
-header p {
-  color: #999;
-  margin: 8px 0 0;
+.subtitle {
+  color: #888;
+  margin: 7px 0 0;
+  font-size: 14px;
 }
 
 .container {
-  max-width: 900px;
+  max-width: 800px;
   margin: auto;
-  padding: 20px;
+  padding: 16px;
+  padding-bottom: 90px;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
 }
 
 .card {
   background: #151515;
   border: 1px solid #292929;
-  border-radius: 16px;
-  padding: 20px;
-  margin-bottom: 18px;
+  border-radius: 17px;
+  padding: 18px;
+  margin-bottom: 15px;
 }
 
 .card h2 {
-  margin-top: 0;
+  margin: 0 0 14px;
+  font-size: 20px;
+}
+
+.card h3 {
+  margin: 18px 0 8px;
+}
+
+.muted {
+  color: #888;
+}
+
+.big-number {
+  font-size: 34px;
+  font-weight: 800;
 }
 
 .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 9px;
 }
 
 .stat {
-  background: #0e0e0e;
-  padding: 16px;
-  border-radius: 12px;
+  background: #0d0d0d;
+  border-radius: 13px;
+  padding: 14px 8px;
   text-align: center;
 }
 
 .stat strong {
   display: block;
-  font-size: 24px;
+  font-size: 21px;
 }
 
 .stat span {
-  color: #888;
-  font-size: 13px;
+  color: #777;
+  font-size: 11px;
 }
 
-.progress {
-  height: 12px;
-  background: #292929;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-top: 12px;
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
-.progress-bar {
-  width: 35%;
-  height: 100%;
+input,
+select,
+textarea {
+  width: 100%;
+  background: #0d0d0d;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 11px;
+  padding: 12px;
+  font-size: 15px;
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #777;
+}
+
+label {
+  display: block;
+  color: #999;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+button {
+  border: 0;
+  border-radius: 12px;
+  padding: 13px 15px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
   background: white;
+  color: black;
+}
+
+button:active {
+  transform: scale(.98);
+}
+
+.btn-dark {
+  background: #292929;
+  color: white;
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: 10px;
 }
 
 .task {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 11px;
   padding: 13px 0;
-  border-bottom: 1px solid #252525;
+  border-bottom: 1px solid #292929;
 }
 
 .task:last-child {
-  border-bottom: none;
+  border-bottom: 0;
 }
 
 .task input {
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
+  accent-color: white;
 }
 
 .task label {
-  font-size: 16px;
+  color: white;
+  margin: 0;
+  font-size: 14px;
 }
 
-button {
-  width: 100%;
+.exercise {
+  background: #0d0d0d;
+  border-radius: 13px;
   padding: 14px;
-  border: none;
-  border-radius: 12px;
-  background: white;
-  color: black;
-  font-weight: bold;
-  font-size: 15px;
-  cursor: pointer;
+  margin-bottom: 9px;
 }
 
-button:hover {
-  opacity: .85;
+.exercise-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-footer {
-  text-align: center;
-  padding: 30px;
-  color: #666;
+.exercise-name {
+  font-weight: 700;
+}
+
+.exercise-info {
+  color: #888;
   font-size: 13px;
+  margin-top: 5px;
 }
 
-@media (max-width: 600px) {
+.exercise input {
+  width: 21px;
+  height: 21px;
+}
+
+.progress {
+  height: 10px;
+  background: #292929;
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: white;
+  transition: width .25s;
+}
+
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(15,15,15,.97);
+  border-top: 1px solid #292929;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 8px 5px calc(8px + env(safe-area-inset-bottom));
+  z-index: 20;
+}
+
+.nav button {
+  background: transparent;
+  color: #777;
+  padding: 7px 3px;
+  font-size: 11px;
+}
+
+.nav button.active {
+  color: white;
+}
+
+.nav-icon {
+  display: block;
+  font-size: 19px;
+  margin-bottom: 2px;
+}
+
+.badge {
+  display: inline-block;
+  background: #292929;
+  color: #ddd;
+  padding: 6px 9px;
+  border-radius: 99px;
+  font-size: 11px;
+}
+
+.success {
+  border: 1px solid #555;
+  background: #191919;
+}
+
+.warning {
+  color: #aaa;
+  font-size: 12px;
+}
+
+.weight-entry {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: end;
+  margin-bottom: 12px;
+}
+
+.history-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 11px 0;
+  border-bottom: 1px solid #292929;
+  font-size: 14px;
+}
+
+.delete-btn {
+  background: transparent;
+  color: #777;
+  padding: 2px 5px;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.empty {
+  color: #777;
+  text-align: center;
+  padding: 20px 0;
+}
+
+@media(max-width:500px) {
   .stats {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  header h1 {
-    font-size: 26px;
+  .stat strong {
+    font-size: 18px;
   }
 }
 </style>
@@ -149,137 +327,1004 @@ footer {
 <body>
 
 <header>
-  <h1>ACE PHYSIQUE PREP</h1>
-  <p>Build the physique. Build the discipline.</p>
+  <div class="header-row">
+    <div>
+      <h1>ACE PHYSIQUE PREP</h1>
+      <p class="subtitle" id="headerDate">Loading...</p>
+    </div>
+    <span class="badge" id="dayBadge">DAY</span>
+  </div>
 </header>
 
 <div class="container">
 
+<!-- DASHBOARD -->
+<section id="home" class="page active">
+
   <div class="card">
-    <h2>Current Goal</h2>
-    <p>Lean, athletic, defined physique.</p>
+    <h2>Today's Focus</h2>
+    <div class="big-number" id="todayTitle">Loading...</div>
+    <p class="muted" id="todayDescription"></p>
+    <button class="btn-full" onclick="showPage('workout')">OPEN TODAY'S WORKOUT</button>
+  </div>
+
+  <div class="card">
+    <h2>Body Weight</h2>
 
     <div class="stats">
       <div class="stat">
-        <strong>155</strong>
-        <span>Current Weight</span>
+        <strong id="currentWeight">—</strong>
+        <span>Current</span>
       </div>
 
       <div class="stat">
-        <strong>6'0"</strong>
-        <span>Height</span>
+        <strong id="goalWeight">—</strong>
+        <span>Goal</span>
       </div>
 
       <div class="stat">
-        <strong>Dec 16</strong>
-        <span>Target Date</span>
+        <strong id="remainingWeight">—</strong>
+        <span>Difference</span>
       </div>
     </div>
-  </div>
 
-  <div class="card">
-    <h2>Overall Progress</h2>
-    <p>Stay consistent. Results stack up.</p>
-
-    <div class="progress">
-      <div class="progress-bar"></div>
-    </div>
-
-    <p>35% complete</p>
-  </div>
-
-  <div class="card">
-    <h2>Today's Checklist</h2>
-
-    <div class="task">
-      <input type="checkbox" id="water">
-      <label for="water">Drink enough water</label>
-    </div>
-
-    <div class="task">
-      <input type="checkbox" id="protein">
-      <label for="protein">Hit protein goal</label>
-    </div>
-
-    <div class="task">
-      <input type="checkbox" id="workout">
-      <label for="workout">Complete today's workout</label>
-    </div>
-
-    <div class="task">
-      <input type="checkbox" id="steps">
-      <label for="steps">Get daily movement / steps</label>
-    </div>
-
-    <div class="task">
-      <input type="checkbox" id="sleep">
-      <label for="sleep">Get 8+ hours of sleep</label>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Workout</h2>
-
-    <p><strong>Push</strong> — Chest, shoulders, triceps</p>
-    <p><strong>Pull</strong> — Back, biceps</p>
-    <p><strong>Legs</strong> — Quads, hamstrings, glutes</p>
-    <p><strong>Core</strong> — Abs and stability</p>
-
-    <button onclick="alert('Workout section coming next 🔥')">
-      VIEW TODAY'S WORKOUT
+    <button class="btn-full" onclick="showPage('progress')">
+      LOG / VIEW WEIGHT
     </button>
   </div>
+
+  <div class="card">
+    <h2>Today's Progress</h2>
+
+    <div class="progress">
+      <div class="progress-bar" id="dailyProgress"></div>
+    </div>
+
+    <p class="muted" id="progressText">0% complete</p>
+
+    <div class="task">
+      <input type="checkbox" id="dashWater" onchange="saveDashboardTask('water')">
+      <label for="dashWater">Hydration goal</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" id="dashNutrition" onchange="saveDashboardTask('nutrition')">
+      <label for="dashNutrition">Nutrition checklist</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" id="dashWorkout" onchange="saveDashboardTask('workout')">
+      <label for="dashWorkout">Workout completed</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" id="dashRecovery" onchange="saveDashboardTask('recovery')">
+      <label for="dashRecovery">Recovery / sleep handled</label>
+    </div>
+
+    <button class="btn-full" onclick="lockIn()">🔥 LOCK IN</button>
+  </div>
+
+  <div class="card" id="lockCard" style="display:none;">
+    <h2>Day Locked In 🔒</h2>
+    <p class="muted">You completed your daily check-in.</p>
+  </div>
+
+</section>
+
+
+<!-- WORKOUT -->
+<section id="workout" class="page">
+
+  <div class="card">
+    <h2 id="workoutTitle">Workout</h2>
+    <p class="muted" id="workoutDescription"></p>
+    <span class="badge" id="workoutBadge"></span>
+  </div>
+
+  <div class="card" id="exerciseList"></div>
+
+  <div class="card">
+    <h2>Workout Completion</h2>
+
+    <div class="progress">
+      <div class="progress-bar" id="workoutProgress"></div>
+    </div>
+
+    <p class="muted" id="workoutProgressText">0% complete</p>
+
+    <button class="btn-full" onclick="completeWorkout()">MARK WORKOUT COMPLETE</button>
+  </div>
+
+</section>
+
+
+<!-- NUTRITION -->
+<section id="nutrition" class="page">
 
   <div class="card">
     <h2>Nutrition</h2>
-
-    <p>Focus on:</p>
-
-    <ul>
-      <li>High-protein meals</li>
-      <li>Enough calories to support training</li>
-      <li>Fruits and vegetables</li>
-      <li>Plenty of water</li>
-      <li>Consistent meals</li>
-    </ul>
-
-    <button onclick="alert('Nutrition tracker coming next 🔥')">
-      OPEN NUTRITION
-    </button>
+    <p class="muted">
+      Focus on consistent meals, enough food to support training,
+      protein-rich foods, fruits/vegetables, and hydration.
+    </p>
   </div>
 
   <div class="card">
-    <h2>Mindset</h2>
+    <h2>Daily Nutrition</h2>
 
-    <p>
-      You don't need a perfect day.
-      You need another consistent day.
-    </p>
+    <div class="task">
+      <input type="checkbox" id="meal1" onchange="saveNutrition()">
+      <label for="meal1">Breakfast / first meal</label>
+    </div>
 
-    <button onclick="alert('Stay locked in. 🤝')">
-      LOCK IN
-    </button>
+    <div class="task">
+      <input type="checkbox" id="meal2" onchange="saveNutrition()">
+      <label for="meal2">Lunch / second meal</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" id="meal3" onchange="saveNutrition()">
+      <label for="meal3">Dinner / third meal</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" id="protein" onchange="saveNutrition()">
+      <label for="protein">Protein included with meals</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" id="produce" onchange="saveNutrition()">
+      <label for="produce">Fruit / vegetables</label>
+    </div>
+
+    <div class="task">
+      <input type="checkbox" id="hydration" onchange="saveNutrition()">
+      <label for="hydration">Hydration goal</label>
+    </div>
   </div>
+
+  <div class="card">
+    <h2>Water</h2>
+    <p class="muted">Track your water without forcing a huge amount.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <strong id="waterCount">0</strong>
+        <span>Glasses</span>
+      </div>
+
+      <div class="stat">
+        <strong id="waterGoal">8</strong>
+        <span>Daily Goal</span>
+      </div>
+
+      <div class="stat">
+        <strong id="waterPercent">0%</strong>
+        <span>Complete</span>
+      </div>
+    </div>
+
+    <button class="btn-full" onclick="addWater()">+ ADD WATER</button>
+    <button class="btn-full btn-dark" onclick="removeWater()">− REMOVE</button>
+  </div>
+
+</section>
+
+
+<!-- PROGRESS -->
+<section id="progress" class="page">
+
+  <div class="card">
+    <h2>Body Weight Setup</h2>
+
+    <div class="grid2">
+      <div>
+        <label>Starting Weight (lb)</label>
+        <input type="number" id="startingWeight" step="0.1" placeholder="155">
+      </div>
+
+      <div>
+        <label>Goal Weight (lb)</label>
+        <input type="number" id="goalWeightInput" step="0.1" placeholder="Enter goal">
+      </div>
+    </div>
+
+    <button class="btn-full" onclick="saveWeightSettings()">SAVE WEIGHT GOALS</button>
+
+    <p class="warning">
+      Your body is still developing, so use the goal as a tracking reference
+      rather than trying to force rapid weight changes.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Log Today's Weight</h2>
+
+    <div class="weight-entry">
+      <div>
+        <label>Weight (lb)</label>
+        <input type="number" id="weightInput" step="0.1" placeholder="155.0">
+      </div>
+
+      <button onclick="addWeight()">ADD</button>
+    </div>
+
+    <p class="muted">Try to weigh under similar conditions each time for a more useful trend.</p>
+  </div>
+
+  <div class="card">
+    <h2>Progress</h2>
+
+    <div class="stats">
+      <div class="stat">
+        <strong id="progressStart">—</strong>
+        <span>Start</span>
+      </div>
+
+      <div class="stat">
+        <strong id="progressCurrent">—</strong>
+        <span>Current</span>
+      </div>
+
+      <div class="stat">
+        <strong id="progressGoal">—</strong>
+        <span>Goal</span>
+      </div>
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" id="weightProgress"></div>
+    </div>
+
+    <p class="muted" id="weightProgressText">No weight entries yet.</p>
+  </div>
+
+  <div class="card">
+    <h2>Weight History</h2>
+    <div id="weightHistory"></div>
+  </div>
+
+  <div class="card">
+    <h2>Daily Notes</h2>
+
+    <textarea id="dailyNotes" placeholder="How did you feel today? Training, energy, recovery, anything worth remembering..."></textarea>
+
+    <button class="btn-full" onclick="saveNotes()">SAVE NOTES</button>
+  </div>
+
+</section>
 
 </div>
 
-<footer>
-  ACE PHYSIQUE PREP © 2026
-</footer>
-  <script>
-const tasks = document.querySelectorAll('.task input');
 
-tasks.forEach((task, index) => {
-  const saved = localStorage.getItem('ace-task-' + index);
+<!-- NAVIGATION -->
+<nav class="nav">
+  <button id="nav-home" class="active" onclick="showPage('home')">
+    <span class="nav-icon">⌂</span>
+    Home
+  </button>
 
-  if (saved === 'true') {
-    task.checked = true;
+  <button id="nav-workout" onclick="showPage('workout')">
+    <span class="nav-icon">🏋️</span>
+    Workout
+  </button>
+
+  <button id="nav-nutrition" onclick="showPage('nutrition')">
+    <span class="nav-icon">🥗</span>
+    Nutrition
+  </button>
+
+  <button id="nav-progress" onclick="showPage('progress')">
+    <span class="nav-icon">📈</span>
+    Progress
+  </button>
+</nav>
+
+
+<script>
+
+const workouts = {
+
+  1: {
+    title: "Monday — Push",
+    description: "Chest, shoulders and triceps",
+    exercises: [
+      ["Push-Ups", "3 sets × 8–15"],
+      ["Incline Push-Ups", "3 sets × 10–15"],
+      ["Pike Push-Ups", "3 sets × 6–12"],
+      ["Close-Grip Push-Ups", "2 sets × 8–12"],
+      ["Plank", "3 sets × 30–60 sec"]
+    ]
+  },
+
+  2: {
+    title: "Tuesday — Pull",
+    description: "Back, biceps and posture",
+    exercises: [
+      ["Backpack Rows", "3 sets × 10–15"],
+      ["Backpack Curls", "3 sets × 10–15"],
+      ["Reverse Snow Angels", "3 sets × 10–15"],
+      ["Superman Hold", "3 sets × 20–40 sec"],
+      ["Dead Bug", "3 sets × 8–12 / side"]
+    ]
+  },
+
+  3: {
+    title: "Wednesday — Legs",
+    description: "Quads, hamstrings, glutes and calves",
+    exercises: [
+      ["Bodyweight Squats", "3 sets × 10–20"],
+      ["Reverse Lunges", "3 sets × 8–12 / leg"],
+      ["Glute Bridges", "3 sets × 12–20"],
+      ["Calf Raises", "3 sets × 15–25"],
+      ["Wall Sit", "2 sets × 30–60 sec"]
+    ]
+  },
+
+  4: {
+    title: "Thursday — Upper Body",
+    description: "Controlled upper-body volume",
+    exercises: [
+      ["Push-Ups", "3 sets × 8–15"],
+      ["Backpack Rows", "3 sets × 10–15"],
+      ["Pike Push-Ups", "3 sets × 6–12"],
+      ["Backpack Curls", "2 sets × 10–15"],
+      ["Plank Shoulder Taps", "3 sets × 10 / side"]
+    ]
+  },
+
+  5: {
+    title: "Friday — Full Body",
+    description: "Full-body training and conditioning",
+    exercises: [
+      ["Squats", "3 sets × 12–20"],
+      ["Push-Ups", "3 sets × 8–15"],
+      ["Backpack Rows", "3 sets × 10–15"],
+      ["Reverse Lunges", "2 sets × 8–12 / leg"],
+      ["Mountain Climbers", "3 sets × 20–30 sec"]
+    ]
+  },
+
+  6: {
+    title: "Saturday — Cooldown",
+    description: "Recovery, mobility and easy movement",
+    exercises: [
+      ["Easy Walk", "10–20 minutes"],
+      ["Chest Stretch", "2 × 30 sec"],
+      ["Hip Flexor Stretch", "2 × 30 sec / side"],
+      ["Hamstring Stretch", "2 × 30 sec / side"],
+      ["Gentle Full-Body Mobility", "5–10 minutes"]
+    ]
+  },
+
+  0: {
+    title: "Sunday — Rest Day",
+    description: "Full rest. Recovery is part of the program.",
+    exercises: [
+      ["Rest", "No structured workout"],
+      ["Easy Movement", "Optional gentle walking"],
+      ["Hydration", "Stay normally hydrated"],
+      ["Recovery", "Relax and prepare for Monday"]
+    ]
   }
 
-  task.addEventListener('change', () => {
-    localStorage.setItem('ace-task-' + index, task.checked);
+};
+
+
+function todayKey() {
+  const d = new Date();
+  return d.getFullYear() + "-" +
+    String(d.getMonth()+1).padStart(2,"0") + "-" +
+    String(d.getDate()).padStart(2,"0");
+}
+
+
+function dayNumber() {
+  return new Date().getDay();
+}
+
+
+function showPage(page) {
+
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
   });
-});
+
+  document.getElementById(page).classList.add("active");
+
+  document.querySelectorAll(".nav button").forEach(b => {
+    b.classList.remove("active");
+  });
+
+  const nav = document.getElementById("nav-" + page);
+  if (nav) nav.classList.add("active");
+
+  window.scrollTo(0,0);
+
+  if (page === "workout") loadWorkout();
+  if (page === "progress") loadProgress();
+  if (page === "nutrition") loadNutrition();
+}
+
+
+function loadDay() {
+
+  const day = dayNumber();
+  const workout = workouts[day];
+
+  document.getElementById("headerDate").textContent =
+    new Date().toLocaleDateString(undefined, {
+      weekday:"long",
+      month:"long",
+      day:"numeric"
+    });
+
+  document.getElementById("dayBadge").textContent =
+    new Date().toLocaleDateString(undefined, {weekday:"short"}).toUpperCase();
+
+  document.getElementById("todayTitle").textContent = workout.title;
+  document.getElementById("todayDescription").textContent = workout.description;
+
+  loadWorkout();
+  loadDashboard();
+}
+
+
+function loadWorkout() {
+
+  const day = dayNumber();
+  const workout = workouts[day];
+
+  document.getElementById("workoutTitle").textContent = workout.title;
+  document.getElementById("workoutDescription").textContent = workout.description;
+
+  document.getElementById("workoutBadge").textContent =
+    day === 0 ? "REST DAY" :
+    day === 6 ? "RECOVERY" :
+    "TRAINING DAY";
+
+  const list = document.getElementById("exerciseList");
+  list.innerHTML = "<h2>Exercises</h2>";
+
+  const saved =
+    JSON.parse(localStorage.getItem("ace-workout-" + todayKey()) || "[]");
+
+  workout.exercises.forEach((exercise, index) => {
+
+    const checked = saved[index] ? "checked" : "";
+
+    const div = document.createElement("div");
+    div.className = "exercise";
+
+    div.innerHTML = `
+      <div class="exercise-top">
+        <div>
+          <div class="exercise-name">${exercise[0]}</div>
+          <div class="exercise-info">${exercise[1]}</div>
+        </div>
+        <input type="checkbox" ${checked}
+          onchange="saveExercise(${index}, this.checked)">
+      </div>
+    `;
+
+    list.appendChild(div);
+  });
+
+  updateWorkoutProgress();
+}
+
+
+function saveExercise(index, checked) {
+
+  const key = "ace-workout-" + todayKey();
+
+  let saved =
+    JSON.parse(localStorage.getItem(key) || "[]");
+
+  saved[index] = checked;
+
+  localStorage.setItem(key, JSON.stringify(saved));
+
+  updateWorkoutProgress();
+}
+
+
+function updateWorkoutProgress() {
+
+  const workout = workouts[dayNumber()];
+
+  const saved =
+    JSON.parse(localStorage.getItem("ace-workout-" + todayKey()) || "[]");
+
+  const completed =
+    workout.exercises.filter((_, i) => saved[i]).length;
+
+  const total = workout.exercises.length;
+
+  const percent =
+    total ? Math.round((completed / total) * 100) : 0;
+
+  document.getElementById("workoutProgress").style.width =
+    percent + "%";
+
+  document.getElementById("workoutProgressText").textContent =
+    completed + " / " + total + " completed — " + percent + "%";
+}
+
+
+function completeWorkout() {
+
+  localStorage.setItem(
+    "ace-dashboard-" + todayKey() + "-workout",
+    "true"
+  );
+
+  document.getElementById("dashWorkout").checked = true;
+
+  updateDailyProgress();
+
+  alert("Workout marked complete. 🔥");
+}
+
+
+function saveDashboardTask(type) {
+
+  const box = document.getElementById(
+    type === "water" ? "dashWater" :
+    type === "nutrition" ? "dashNutrition" :
+    type === "workout" ? "dashWorkout" :
+    "dashRecovery"
+  );
+
+  localStorage.setItem(
+    "ace-dashboard-" + todayKey() + "-" + type,
+    box.checked
+  );
+
+  updateDailyProgress();
+}
+
+
+function loadDashboard() {
+
+  ["water","nutrition","workout","recovery"].forEach(type => {
+
+    const id =
+      type === "water" ? "dashWater" :
+      type === "nutrition" ? "dashNutrition" :
+      type === "workout" ? "dashWorkout" :
+      "dashRecovery";
+
+    document.getElementById(id).checked =
+      localStorage.getItem(
+        "ace-dashboard-" + todayKey() + "-" + type
+      ) === "true";
+  });
+
+  if (
+    localStorage.getItem("ace-locked-" + todayKey()) === "true"
+  ) {
+    document.getElementById("lockCard").style.display = "block";
+  }
+
+  updateDailyProgress();
+}
+
+
+function updateDailyProgress() {
+
+  const boxes = [
+    document.getElementById("dashWater"),
+    document.getElementById("dashNutrition"),
+    document.getElementById("dashWorkout"),
+    document.getElementById("dashRecovery")
+  ];
+
+  const completed =
+    boxes.filter(b => b.checked).length;
+
+  const percent =
+    Math.round((completed / boxes.length) * 100);
+
+  document.getElementById("dailyProgress").style.width =
+    percent + "%";
+
+  document.getElementById("progressText").textContent =
+    percent + "% complete";
+}
+
+
+function lockIn() {
+
+  const boxes = [
+    document.getElementById("dashWater"),
+    document.getElementById("dashNutrition"),
+    document.getElementById("dashWorkout"),
+    document.getElementById("dashRecovery")
+  ];
+
+  const complete =
+    boxes.every(b => b.checked);
+
+  if (!complete) {
+    alert("Finish your daily checklist first. You got this. 🤝");
+    return;
+  }
+
+  localStorage.setItem(
+    "ace-locked-" + todayKey(),
+    "true"
+  );
+
+  document.getElementById("lockCard").style.display = "block";
+
+  alert("DAY LOCKED IN 🔒🔥");
+}
+
+
+function saveNutrition() {
+
+  const ids = [
+    "meal1",
+    "meal2",
+    "meal3",
+    "protein",
+    "produce",
+    "hydration"
+  ];
+
+  ids.forEach(id => {
+    localStorage.setItem(
+      "ace-nutrition-" + todayKey() + "-" + id,
+      document.getElementById(id).checked
+    );
+  });
+
+  const nutritionDone =
+    ids.every(id => document.getElementById(id).checked);
+
+  document.getElementById("dashNutrition").checked =
+    nutritionDone;
+
+  localStorage.setItem(
+    "ace-dashboard-" + todayKey() + "-nutrition",
+    nutritionDone
+  );
+
+  updateDailyProgress();
+}
+
+
+function loadNutrition() {
+
+  const ids = [
+    "meal1",
+    "meal2",
+    "meal3",
+    "protein",
+    "produce",
+    "hydration"
+  ];
+
+  ids.forEach(id => {
+
+    document.getElementById(id).checked =
+      localStorage.getItem(
+        "ace-nutrition-" + todayKey() + "-" + id
+      ) === "true";
+  });
+
+  loadWater();
+}
+
+
+function addWater() {
+
+  let amount =
+    Number(localStorage.getItem("ace-water-" + todayKey()) || 0);
+
+  amount++;
+
+  localStorage.setItem(
+    "ace-water-" + todayKey(),
+    amount
+  );
+
+  loadWater();
+}
+
+
+function removeWater() {
+
+  let amount =
+    Number(localStorage.getItem("ace-water-" + todayKey()) || 0);
+
+  amount = Math.max(0, amount - 1);
+
+  localStorage.setItem(
+    "ace-water-" + todayKey(),
+    amount
+  );
+
+  loadWater();
+}
+
+
+function loadWater() {
+
+  const amount =
+    Number(localStorage.getItem("ace-water-" + todayKey()) || 0);
+
+  const goal = 8;
+
+  document.getElementById("waterCount").textContent = amount;
+  document.getElementById("waterGoal").textContent = goal;
+
+  document.getElementById("waterPercent").textContent =
+    Math.min(100, Math.round(amount / goal * 100)) + "%";
+
+  if (amount >= goal) {
+
+    document.getElementById("dashWater").checked = true;
+
+    localStorage.setItem(
+      "ace-dashboard-" + todayKey() + "-water",
+      "true"
+    );
+
+  }
+
+  updateDailyProgress();
+}
+
+
+function saveWeightSettings() {
+
+  const start =
+    parseFloat(document.getElementById("startingWeight").value);
+
+  const goal =
+    parseFloat(document.getElementById("goalWeightInput").value);
+
+  if (!start || !goal) {
+    alert("Enter both your starting and goal weight.");
+    return;
+  }
+
+  localStorage.setItem("ace-starting-weight", start);
+  localStorage.setItem("ace-goal-weight", goal);
+
+  loadProgress();
+
+  alert("Weight goals saved. 🤝");
+}
+
+
+function addWeight() {
+
+  const input =
+    document.getElementById("weightInput");
+
+  const weight =
+    parseFloat(input.value);
+
+  if (!weight) {
+    alert("Enter a valid weight.");
+    return;
+  }
+
+  let history =
+    JSON.parse(localStorage.getItem("ace-weight-history") || "[]");
+
+  const date = todayKey();
+
+  const existing =
+    history.findIndex(entry => entry.date === date);
+
+  if (existing >= 0) {
+    history[existing].weight = weight;
+  } else {
+    history.push({
+      date: date,
+      weight: weight
+    });
+  }
+
+  history.sort((a,b) => a.date.localeCompare(b.date));
+
+  localStorage.setItem(
+    "ace-weight-history",
+    JSON.stringify(history)
+  );
+
+  if (!localStorage.getItem("ace-starting-weight")) {
+    localStorage.setItem("ace-starting-weight", weight);
+  }
+
+  input.value = "";
+
+  loadProgress();
+  updateDashboardWeight();
+
+  alert("Weight saved. ⚖️");
+}
+
+
+function deleteWeight(date) {
+
+  let history =
+    JSON.parse(localStorage.getItem("ace-weight-history") || "[]");
+
+  history =
+    history.filter(entry => entry.date !== date);
+
+  localStorage.setItem(
+    "ace-weight-history",
+    JSON.stringify(history)
+  );
+
+  loadProgress();
+  updateDashboardWeight();
+}
+
+
+function loadProgress() {
+
+  const start =
+    parseFloat(localStorage.getItem("ace-starting-weight"));
+
+  const goal =
+    parseFloat(localStorage.getItem("ace-goal-weight"));
+
+  document.getElementById("startingWeight").value =
+    start || "";
+
+  document.getElementById("goalWeightInput").value =
+    goal || "";
+
+  const history =
+    JSON.parse(localStorage.getItem("ace-weight-history") || "[]");
+
+  const current =
+    history.length ? history[history.length - 1].weight : null;
+
+  document.getElementById("progressStart").textContent =
+    start ? start + " lb" : "—";
+
+  document.getElementById("progressCurrent").textContent =
+    current ? current + " lb" : "—";
+
+  document.getElementById("progressGoal").textContent =
+    goal ? goal + " lb" : "—";
+
+  if (start && goal && current) {
+
+    const total = Math.abs(goal - start);
+    const moved = Math.abs(current - start);
+
+    let percent =
+      total > 0 ? Math.min(100, moved / total * 100) : 0;
+
+    document.getElementById("weightProgress").style.width =
+      percent + "%";
+
+    document.getElementById("weightProgressText").textContent =
+      Math.round(percent) + "% of the distance from start to goal";
+
+  } else {
+
+    document.getElementById("weightProgress").style.width = "0%";
+
+    document.getElementById("weightProgressText").textContent =
+      "Add your starting weight, goal and daily entries.";
+  }
+
+  const historyBox =
+    document.getElementById("weightHistory");
+
+  historyBox.innerHTML = "";
+
+  if (!history.length) {
+
+    historyBox.innerHTML =
+      '<div class="empty">No weight entries yet.</div>';
+
+  } else {
+
+    [...history].reverse().forEach(entry => {
+
+      const row = document.createElement("div");
+
+      row.className = "history-row";
+
+      row.innerHTML = `
+        <span>${formatDate(entry.date)}</span>
+        <span>
+          <strong>${entry.weight} lb</strong>
+          <button class="delete-btn"
+            onclick="deleteWeight('${entry.date}')">×</button>
+        </span>
+      `;
+
+      historyBox.appendChild(row);
+    });
+  }
+
+  loadNotes();
+}
+
+
+function updateDashboardWeight() {
+
+  const history =
+    JSON.parse(localStorage.getItem("ace-weight-history") || "[]");
+
+  const current =
+    history.length ? history[history.length - 1].weight : null;
+
+  const goal =
+    parseFloat(localStorage.getItem("ace-goal-weight"));
+
+  document.getElementById("currentWeight").textContent =
+    current ? current + " lb" : "—";
+
+  document.getElementById("goalWeight").textContent =
+    goal ? goal + " lb" : "—";
+
+  if (current && goal) {
+
+    document.getElementById("remainingWeight").textContent =
+      Math.abs(current - goal).toFixed(1) + " lb";
+
+  } else {
+
+    document.getElementById("remainingWeight").textContent = "—";
+  }
+}
+
+
+function formatDate(dateString) {
+
+  const date = new Date(dateString + "T12:00:00");
+
+  return date.toLocaleDateString(undefined, {
+    month:"short",
+    day:"numeric",
+    year:"numeric"
+  });
+}
+
+
+function saveNotes() {
+
+  const notes =
+    document.getElementById("dailyNotes").value;
+
+  localStorage.setItem(
+    "ace-notes-" + todayKey(),
+    notes
+  );
+
+  alert("Notes saved. 📝");
+}
+
+
+function loadNotes() {
+
+  const notes =
+    localStorage.getItem("ace-notes-" + todayKey()) || "";
+
+  document.getElementById("dailyNotes").value = notes;
+}
+
+
+/* START APP */
+
+loadDay();
+updateDashboardWeight();
+loadProgress();
+
 </script>
 
 </body>
